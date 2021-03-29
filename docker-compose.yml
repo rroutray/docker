@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+   mysql:
+      image: "mysql/mysql-server:latest"
+      restart: always
+      environment:
+         MYSQL_DATABASES: 'movies'
+         MYSQL_USER: 'root'
+         MYSQL_PASSWORD: 'password'
+         MYSQL_ROOT_PASSWORD: 'password'
+      ports:
+          - '3306:3306'
+      expose:
+          - '3306'
+   python:
+      image: "python:latest"
+      ports:
+        - '5000:5000'
+      links:
+        - mysql
