@@ -76,4 +76,4 @@ Ans: last rate: 2018-09-24 14:27:30 (Title: Crumb (1994))
 Ans: 148 movies
 
 Create Docker compose file:
-docker-compose.yml
+docker-compose.yml (uploaded in same folder)
