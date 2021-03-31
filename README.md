@@ -8,7 +8,7 @@ Open Ubuntu command line and execute following commands:
 Pull image for MySQL:
 docker pull mysql/mysql-server:latest
 
-Deploy a new MySQL container (container1):
+Deploy a new MySQL container:
 docker run --name=mysql_container -d mysql/mysql-server:latest
 
 Installed MySQL client:
@@ -23,7 +23,7 @@ unzip MyFilename.zip
 Pull image for python:
 docker pull python:latest
 
-Deploy a new python container (container_python):
+Deploy a new python container:
 docker run --name=python_container -d python:latest
 
 Login to MySQL from Ubuntu:
