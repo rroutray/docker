@@ -2,19 +2,30 @@ version: "3.3"
 
 services:
    mysql:
-      image: "mysql/mysql-server:latest"
-      restart: always
-      environment:
-         MYSQL_DATABASES: 'movies'
-         MYSQL_USER: 'root'
-         MYSQL_PASSWORD: 'password'
-      ports:
-          - '3306:3306'
-      expose:
-          - '3306'
+     image: "mysql/mysql-server:latest"
+     container_name: mysql_container
+     restart: always
+     environment:
+        MYSQL_ROOT_PASSWORD: 'password'
+        MYSQL_DATABASE: 'movies'
+        MYSQL_USER: 'root'
+        MYSQL_PASSWORD: 'password'
+     ports:
+         - '3306:3306'
+     expose:
+         - '3306'
+     command: --init-file /tmp/mysql_boot/query.sql
+     volumes:
+         - /home/vagrant:/tmp/mysql_boot
+
    python:
-      image: "python:latest"
-      ports:
+     image: "python:latest"
+     container_name: python_container
+     command: >
+        bash -c "pip install mysql-connector-python==8.0.23 && sleep 120 && python3 /tmp/python_boot/db-connector.py runserver 0.0.0.0:5000"
+     ports:
         - '5000:5000'
-      links:
+     volumes:
+        - /home/vagrant:/tmp/python_boot
+     links:
         - "mysql"

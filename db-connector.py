@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
+connection = mysql.connector.connect(host='mysql',database='movies',user='root',password='password')
 try:
-    connection = mysql.connector.connect(host='172.17.0.2',database='movies',user='root',password='password')
     if connection.is_connected():
         db_Info = connection.get_server_info()
         print("Connected to MySQL Server version ", db_Info)
@@ -9,7 +9,6 @@ try:
         cursor.execute("select database();")
         record = cursor.fetchone()
         print("You're connected to database: ", record)
-
 except Error as e:
     print("Error while connecting to MySQL", e)
 finally:

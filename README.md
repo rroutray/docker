@@ -9,7 +9,7 @@ Pull image for MySQL:
 docker pull mysql/mysql-server:latest
 
 Deploy a new MySQL container (container1):
-docker run --name=container1 -d mysql/mysql-server:latest
+docker run --name=mysql_container -d mysql/mysql-server:latest
 
 Installed MySQL client:
 apt-get install mysql-client
@@ -24,10 +24,10 @@ Pull image for python:
 docker pull python:latest
 
 Deploy a new python container (container_python):
-docker run --name=container_python -d python:latest
+docker run --name=python_container -d python:latest
 
 Login to MySQL from Ubuntu:
-docker exec -it container1 mysql -uroot -p
+docker exec -it mysql_container mysql -uroot -p
 
 In MySql command prompt:
 Create database, movies
@@ -37,8 +37,8 @@ movie
 rating
 
 Import data into 2 tables:
-LOAD DATA INFILE '/home/ritu/mysql-files/movies.csv' INTO TABLE movie FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
-LOAD DATA INFILE '/home/ritu/mysql-files/ratings.csv' INTO TABLE rating FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+LOAD DATA INFILE '/home/vagrant/movies.csv' INTO TABLE movie FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+LOAD DATA INFILE '/home/vagrant/ratings.csv' INTO TABLE rating FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
 
 Query the tables in MySql and found answers:
 1. How many movies are in data set ?
@@ -75,5 +75,12 @@ Ans: last rate: 2018-09-24 14:27:30 (Title: Crumb (1994))
 6. Find all movies released in 1990
 Ans: 148 movies
 
-Create Docker compose file:
-docker-compose.yml (uploaded in same folder)
+Create Docker compose file (uploaded in Github):
+docker-compose.yml (single file for both MySql & Python)
+This compose file has references to db_connector.py (sample file to test connection with MySql) and query.sql (it contains MySql queries to create DB, tables and query for questions given above)
+
+Create Python file (uploaded in Github):
+db_connector.py
+
+Create MySql file (uploaded in Github):
+query.sql
